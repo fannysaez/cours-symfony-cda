@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tools{% endblock %}
+
+{% block body %}
+    <h1>Voici les tools !</h1>
+
+    {% for tool in tools %}
+        <div>
+            Tool : {{ tool.label }} / avec un niveau de danger : {{ tool.danger }}
+        </div>
+    {% endfor %}
+
+
+{% endblock %}

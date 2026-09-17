@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+{# ---- VARIABLE ---- #}
+<p>bonjour {{ exempleVariable }}</p>
+
+{# ---- FILTRES ---- #}
+<p>{{ exempleVariable | upper }}</p>
+<p>{{ exempleVariable | length }} lettres</p>
+<p>{{ exempleVariable | capitalize }}</p>
+
+{# ---- SET ---- #}
+{% set message = "je suis une variable twig" %}
+<p>{{ message }}</p>
+
+{# ---- IF / ELSE ---- #}
+{% if age >= 18 %}
+    <p>vous êtes majeur !</p>
+{% else %}
+    <p>vous êtes mineur !</p>
+{% endif %}
+
+{# ---- FOR ---- #}
+<ul>
+    {% for item in array %}
+        <li>{{ loop.index }} - {{ item }}</li>
+    {% endfor %}
+</ul>
+
+{# ---- INGREDIENTS ---- #}
+<h2>Les ingrédients :</h2>
+{% for ingredient in ingredientEntities %}
+    <div>
+        <p>{{ ingredient.label }}</p>
+    </div>
+{% endfor %}
+
+{# ---- RECETTES ---- #}
+<h2>Les recettes :</h2>
+{% for recipe in recipes %}
+    <div>
+        <img src="{{ asset(recipe.imagePath) }}" alt="{{ recipe.name }}">
+        <a href="{{ path('app_recipe_item', {id: recipe.id}) }}">Lien vers la recette</a>
+        <p>Titre de la recette : {{ recipe.name }}</p>
+        <p>Date de la recette : {{ recipe.createdAt | date('d/m/Y H:i:s') }}</p>
+        <p>Utilisateur : {{ recipe.user.email }}</p>
+        <p><strong>Les ingrédients :</strong></p>
+        {% for ingredient in recipe.ingredients %}
+            <div>
+            {{ ingredient.label }}
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+
+{# ---- TOOLS ---- #}
+<h2>Les tools :</h2>
+{% for tool in tools %}
+    <div>
+        <p>Tool : {{ tool.label }} / avec un niveau de danger : {{ tool.danger }}</p>
+    </div>
+{% endfor %}
+
+{% endblock %}
