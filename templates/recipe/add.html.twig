@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ajouter une recette{% endblock %}
+{% block body %}
+    {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.duration) }}
+        {{ form_row(form.imagePath) }}
+        {{ form_row(form.user) }}
+        {{ form_row(form.tools) }}
+        {{ form_row(form.ingredients) }}
+        <button type="submit" class="btn btn-primary">Ajouter une recette</button>
+    {{ form_end(form) }}
+{% endblock %}

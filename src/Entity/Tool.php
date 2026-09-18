@@ -27,6 +27,9 @@ class Tool
     #[ORM\ManyToMany(targetEntity: Recipe::class, mappedBy: 'tools')]
     private Collection $recipes;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
@@ -84,6 +87,18 @@ class Tool
         if ($this->recipes->removeElement($recipe)) {
             $recipe->removeTool($this);
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
